@@ -77,6 +77,26 @@ class CreaTypeWork extends Component {
                     />
                      {errors.titleWork && <div className="validation" style={{display: 'block'}}>{errors.titleWork}</div>}
                 </div>
+                <div>
+                    <TextField
+                        id="standard-basic"
+                        label="Địa chỉ"
+                        onChange={this.handleOnChane}
+                        name="addressWork"
+                        value={this.state.addressWork}
+                    />
+                     {errors.addressWork && <div className="validation" style={{display: 'block'}}>{errors.addressWork}</div>}
+                </div>
+                <div>
+                    <TextField
+                        id="standard-basic"
+                        label="Trình độ"
+                        onChange={this.handleOnChane}
+                        name="levelWork"
+                        value={this.state.levelWork}
+                    />
+                     {errors.levelWork && <div className="validation" style={{display: 'block'}}>{errors.levelWork}</div>}
+                </div>
                 <Button variant="contained" type="submit" color="secondary" container style={divButton} onClick={this.handleSubmitError}>
                     Thêm kiểu công việc
                 </Button>
@@ -87,6 +107,8 @@ class CreaTypeWork extends Component {
                     <TableHead>
                         <TableRow>
                         <TableCell>Loại công việc</TableCell>
+                        <TableCell>Địa chỉ</TableCell>
+                        <TableCell>Trình độ</TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>

@@ -85,6 +85,24 @@ function EditModalType(props) {
                                 onChange={(e)=>handleChange(e.target.name,e.target.value)}
                             />
                             </div>
+                            <div className="divInput">
+                            <AccountCircleIcon style={divIcon} />
+                            <TextField
+                                id="standard-basic"
+                                defaultValue={renderDetail.addressWork}
+                                name="name"
+                                onChange={(e)=>handleChange(e.target.name,e.target.value)}
+                            />
+                            </div>
+                            <div className="divInput">
+                            <AccountCircleIcon style={divIcon} />
+                            <TextField
+                                id="standard-basic"
+                                defaultValue={renderDetail.levelWork}
+                                name="name"
+                                onChange={(e)=>handleChange(e.target.name,e.target.value)}
+                            />
+                            </div>
                             </div>
                         </div>
                     </div>
@@ -94,6 +112,6 @@ function EditModalType(props) {
                 </div>
         </Modal>
     )
-}
+};
 
 export default (EditModalType)

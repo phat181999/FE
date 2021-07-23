@@ -15,7 +15,7 @@ const styleInput ={
     height: '43px',
     border: '1px solid gray',
     borderRadius: '7px'
-}
+};
 
 function SeacrchJob (props) {
   useEffect(() => {

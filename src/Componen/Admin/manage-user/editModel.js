@@ -242,12 +242,6 @@ function EditModel(props) {
                 <RadioGroup className="Register-form" name="sex" name="gender1" value={detailuser.type} onChange={(e)=>handleChange(e.target.name,e.target.value)}>
                   <FormControlLabel
                     control={<Radio />}
-                    label="Nhà Tuyển Dụng"
-                    value="NHATUYENDUNG"
-                    name="type"   
-                  />
-                  <FormControlLabel
-                    control={<Radio />}
                     label="Ứng Viên"
                     value="UNGVIEN"
                     name="type"    

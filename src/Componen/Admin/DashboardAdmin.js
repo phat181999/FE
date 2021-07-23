@@ -163,12 +163,12 @@ export default function DashboardAdmin() {
 								<ListItemText primary="Quản lí kiểu công việc" />
 							</ListItem>
 						</Link>
-						<Link to="/admin/manage-user-work">
+						{/* <Link to="/admin/manage-user-work">
 							<ListItem>
 								<WorkIcon />
 								<ListItemText primary="Quản lí tìm việc ứng viên" />
 							</ListItem>
-						</Link>
+						</Link> */}
 						<Link to="/admin/manage-company">
 							<ListItem>
 								<BusinessIcon />

@@ -13,30 +13,29 @@ const useStyles = makeStyles((theme) => ({
     color: theme.palette.text.secondary,
   },
 }));
-
- function Content(props) {
-  const classes = useStyles();
-  useEffect(() => {
-    props.getListWorkCompany();
-  }, []);
-  const onShowDetail = (id) => {
-    props.applyWork({jobId:id});
-  };
-  const renderHTML = () => {
-    return props.getWorkContent.slice(-6).reverse().map((renderInfomation) => {
-      return <RenderInfomationWork renderInfomation={renderInfomation} onShowDetail={onShowDetail} />;
-    });
-  };
-  return (
-    <div className={classes.root} className="container">
-      <div className="text-center container">
-        <h2>Tin Tuyển Dụng Mới Nhất</h2>
-      </div>
-      <Grid container >
-          {renderHTML()} 
-      </Grid>
+function Content(props) {
+const classes = useStyles();
+useEffect(() => {
+  props.getListWorkCompany();
+}, []);
+const onShowDetail = (id) => {
+  props.applyWork({jobId:id});
+};
+const renderHTML = () => {
+  return props.getWorkContent.slice(-6).reverse().map((renderInfomation) => {
+    return <RenderInfomationWork renderInfomation={renderInfomation} onShowDetail={onShowDetail} />;
+  });
+};
+return (
+  <div className={classes.root} className="container">
+    <div className="text-center container">
+      <h2>Tin Tuyển Dụng Mới Nhất</h2>
     </div>
-  );
+    <Grid container >
+        {renderHTML()} 
+    </Grid>
+  </div>
+);
 }
 
 const mapStateToProp = state => {

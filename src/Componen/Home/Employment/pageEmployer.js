@@ -21,7 +21,7 @@ import MovieIcon from '@material-ui/icons/Movie';
 import InfomationCompany from './Info-Company/informationCompany';
 import RenderPostWorkEmployer from './renderPostWorkEmployer';
 import Application from '../Application/application'
-import CreateCompany from './createCompany/employerCompany';
+import Footer from '../Footer/footer';
 const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
@@ -98,6 +98,7 @@ export default function PageEmployer() {
 	};
 
 	return (
+		<>
 		<Router>
 			<div className={classes.root}>
 				<CssBaseline />
@@ -188,5 +189,7 @@ export default function PageEmployer() {
 				{/* end màn hình */}
 			</div>
 		</Router>
+		{/* <Footer/> */}
+		</>
 	);
 }

@@ -23,7 +23,6 @@ const useStyles = makeStyles((theme) => ({
 
  function Blog(props) {
   const classes = useStyles();
-
   useEffect(() => {
     props.getListNews();
   }, []);
@@ -32,8 +31,6 @@ const useStyles = makeStyles((theme) => ({
       return <RenderNews news={news} />;
     });
   };
-
-
   return (
     <div className={classes.root} className="container" >
       <div className="text-center container">

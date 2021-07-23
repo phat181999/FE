@@ -49,10 +49,16 @@ export const actCreateTypeWowkAdminAPI = (createTypeWork,cb) =>{
               text: 'Đăng nhập ngay',
               width: '400px',
               padding: '0 0 20px 0'
-          }).then(() => {
+          }).then(()=>{
+            dispatch(actGetTypeListWorkAPI());
+          })
+          .then(() => {
+           
               console.log(rs.data);   
               if (cb) cb(null, rs.data);
+             
           });
+         
       })
       .catch((err) => {
           Swal.fire({
@@ -67,7 +73,7 @@ export const actCreateTypeWowkAdminAPI = (createTypeWork,cb) =>{
   }
 }
 export const handleDeleteTypeWork = id => {
-  return () => {
+  return (dispatch) => {
     const token = localStorage.getItem('token');
     Axios({
       method: "DELETE",
@@ -78,6 +84,7 @@ export const handleDeleteTypeWork = id => {
     })
       .then((rs) => {
         Swal.fire("Xoá thành công!", "Nhấn OK để thoát!", "success");
+        dispatch(actGetTypeListWorkAPI());
       })
       .catch((error) => {
         Swal.fire(
@@ -91,7 +98,7 @@ export const handleDeleteTypeWork = id => {
     }
 };
 export const handleUpdateTypeWork = (id,newType) => {
-  return () => {
+  return (dispatch) => {
     const token = localStorage.getItem('token');
     Axios({
       method: "PUT",
@@ -103,7 +110,7 @@ export const handleUpdateTypeWork = (id,newType) => {
     })
       .then((rs) => {
         Swal.fire("thành công!", "Nhấn OK để thoát!", "success");
-        console.log((rs.data));
+        dispatch(actGetTypeListWorkAPI());
       })
       .catch((error) => {
         Swal.fire(

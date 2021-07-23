@@ -6,7 +6,7 @@ import Button from "@material-ui/core/Button";
 import CreateWork from "./createWork";
 import { connect } from "react-redux";
 import * as work from "../../../ShareAll/Action/work";
-import * as ActionTypeWork from "../../../ShareAll/Action/typework"
+import * as ActionTypeWork from "../../../ShareAll/Action/work"
 import Validator from '../../../utils/validator';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -32,9 +32,37 @@ class RenderPostWorkEmployer extends Component {
       request: "",
       salary:"",
       typeWork:"id",
+      addr:"",
+      levelWork:"",
       errors: {},
     }
     const rules = [
+      {
+        field: 'levelWork',
+        method: 'isEmpty',
+        validWhen: false,
+        message: 'Không được để trống.',
+      },
+      {
+        field: 'levelWork',
+        method: 'isLength',
+        args: [{min: 5}],
+        validWhen: true,
+        message: 'Bắt buộc phải từ 5 kí tự.',
+      },
+      {
+        field: 'addr',
+        method: 'isEmpty',
+        validWhen: false,
+        message: 'Không được để trống.',
+      },
+      {
+        field: 'addr',
+        method: 'isLength',
+        args: [{min: 5}],
+        validWhen: true,
+        message: 'Bắt buộc phải từ 5 kí tự.',
+      },
       {
         field: 'nameWork',
         method: 'isEmpty',
@@ -131,7 +159,7 @@ class RenderPostWorkEmployer extends Component {
     this.props.getTypeWork();
   }
   renderHTML = () => {
-      return <CreateWork createWork={this.props.detailinfouserwork} />;
+      return <CreateWork createWork={this.props.detailWorkFromCompany} />;
   };
   handleSubmitError = (e) => {
     this.setState({
@@ -189,6 +217,16 @@ class RenderPostWorkEmployer extends Component {
                       />
                       {errors.education && <div className="validation" style={{display: 'block'}}>{errors.education}</div>}
                     </div>
+                    <div className="Create-Work">
+                      <TextField
+                        id="standard-basic"
+                        label="Địa chỉ"
+                        onChange={this.handleOnChane}
+                        name="addr"
+                        value={this.state.addr}
+                      />
+                      {errors.addr && <div className="validation" style={{display: 'block'}}>{errors.addr}</div>}
+                    </div>
                   </div>
                   <div className="form-right">
                     <div className="Create-Work">
@@ -221,21 +259,16 @@ class RenderPostWorkEmployer extends Component {
                       />
                        {errors.salary && <div className="validation" style={{display: 'block'}}>{errors.salary}</div>}
                     </div>
-                    <FormControl className="Work-form" style={divStyle}>
-                      <InputLabel 
-                          labelId="demo-simple-select-label"
-                          id="demo-simple-select">
-                                    Loại công việc
-                      </InputLabel>
-                      <Select
-                        labelId="demo-simple-select-label"
-                        id="demo-simple-select"
-                        value={this.state.typeWork.id}
-                        onChange={this.handleChange}
-                      >
-                        {this.MenuItem()}
-                      </Select>
-                    </FormControl>
+                    <div className="Create-Work">
+                      <TextField
+                        id="standard-basic"
+                        label="Trình độ"
+                        onChange={this.handleOnChane}
+                        name="levelWork"
+                        value={this.state.levelWork}
+                      />
+                       {errors.levelWork && <div className="validation" style={{display: 'block'}}>{errors.levelWork}</div>}
+                    </div>
                   </div>
                  </div>
                   <Button variant="contained" color="primary" type="submit" onClick={this.handleSubmitError}>
@@ -246,7 +279,9 @@ class RenderPostWorkEmployer extends Component {
             </Paper>
           </Grid>
           <Grid item xs={12} style={loadCreateWork}>
-            {this.renderHTML()}
+            <Grid container>
+              {this.renderHTML()}
+            </Grid>
           </Grid>
         </Grid>
       </div>
@@ -256,7 +291,7 @@ class RenderPostWorkEmployer extends Component {
 
 const mapStateToProps = state => {
   return {
-    detailinfouserwork: state.workReducer.detailinfouserwork,
+    detailWorkFromCompany: state.workReducer.detailWorkFromCompany,
     listTypeWork: state.typeworkReducer.listTypeWork,
   };
 };
@@ -270,7 +305,7 @@ const mapDispatchToProps = dispatch => {
       dispatch(work.actCreateWorkEmployer(user));
     },
     getTypeWork: () => {
-      dispatch(ActionTypeWork.actGetTypeListWorkAPI());
+      dispatch(ActionTypeWork.actDetailInfoUserWorkFromCompanyAPI());
     },
   };
 };

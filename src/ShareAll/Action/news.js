@@ -28,7 +28,7 @@ export const actCreateNewsAPI = (news, cb)=>{
               padding: '0 0 20px 0'
           }).then(() => {
               console.log(rs.data);  
-              if (cb) cb(null, rs.data); 
+              dispatch(actGetListWorkAPI());
           });
       })
       .catch((err) => {
@@ -72,7 +72,7 @@ export const actGetDetailNewsAPI = (id) => {
     };
 };
 export const handleDeleteNewsAPI = id => {
-    return () => {
+    return (dispatch) => {
       const token = localStorage.getItem('token');
       Axios({
         method: "DELETE",
@@ -83,6 +83,7 @@ export const handleDeleteNewsAPI = id => {
       })
         .then((rs) => {
           Swal.fire("Xoá thành công!", "Nhấn OK để thoát!", "success");
+          dispatch(actGetListWorkAPI());
         })
         .catch((error) => {
           Swal.fire(
@@ -94,7 +95,7 @@ export const handleDeleteNewsAPI = id => {
       }
 };
 export const handleUpdateNewsAPI = (id,updateNews) => {
-  return () => {
+  return (dispatch) => {
     const token = localStorage.getItem('token');
     Axios({
       method: "PUT",
@@ -106,6 +107,7 @@ export const handleUpdateNewsAPI = (id,updateNews) => {
     })
       .then((rs) => {
         Swal.fire("Thành công!", "Nhấn OK để thoát!", "success");
+        dispatch(actGetListWorkAPI());
       })
       .catch((error) => {
         Swal.fire(

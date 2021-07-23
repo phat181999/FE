@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState,useEffect } from 'react'
 import TableRow from '@material-ui/core/TableRow';
 import TableCell from '@material-ui/core/TableCell';
 import Button from '@material-ui/core/Button';
@@ -72,7 +72,6 @@ function User (props) {
   };
   const handleClickEdit= (id)=>{ 
         getDetailUser(id);
-        console.log(getDetailUser(id),"as");
         setTimeout(()=>{
           setModal(true)
         },200)
@@ -108,14 +107,14 @@ const mapStateToProp = state => {
 };
 const mapDispatchToProps = dispatch => {
     return {
-      deleteUser: (id) => {
-        dispatch(Action.handleDeleteUser(id));
+      deleteUser: (id,user, cb) => {
+        dispatch(Action.handleDeleteUser(id,user, cb));
       },
       getDetailUser: (id) => {
         dispatch(Action.actGetDetailUserAPI(id));
       },
-      updateUser: (id,newUser) =>{
-        dispatch(Action.actUpdateUserAPI(id,newUser))
+      updateUser: (id,newUser,user, cb) =>{
+        dispatch(Action.actUpdateUserAPI(id,newUser,user, cb))
       }
   };
 }

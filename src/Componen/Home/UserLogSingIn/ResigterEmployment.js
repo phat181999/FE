@@ -215,7 +215,7 @@ class ResigterEmployment extends Component {
                   method="post"
                   enctype="multipart/form-data"
                 >
-                  <h1>Đăng kí</h1>
+                  <h3>ĐĂNG KÍ NHÀ TUYỂN DỤNG</h3>
                   <div className="Left-form">
                     <div className="userForm-Img">
                       <div>

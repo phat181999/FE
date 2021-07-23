@@ -3,7 +3,8 @@ import * as actType from "../Constans/actType";
 let initialState = {
     getListCompany:[],
     getInfoEmloyer:[{}],
-    getdetailCompany:{}
+    getdetailCompany:{},
+    detailAccountCompany:{}
 };
 
 const companyReducer = (state=initialState,action)=>{
@@ -16,6 +17,9 @@ const companyReducer = (state=initialState,action)=>{
             return{...state};
         case actType.DETAIL_COMAPANY:
             state.getdetailCompany = action.data;
+            return{...state};
+        case actType.DETAIL_ACCOUNT_COMPANY:
+            state.detailAccountCompany = action.data;
             return{...state};
         default:
             return{...state};

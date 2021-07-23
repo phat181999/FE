@@ -273,7 +273,7 @@ const divStyle = {
           <Grid item xs={6} className="Login-Right text-center">
             <div className="Right-content">
               <form onSubmit={this.handleSubmit} action="/profile" method="post" enctype="multipart/form-data">
-              <h1>Đăng kí</h1>
+              <h1>ĐĂNG KÍ ỨNG VIÊN</h1>
               <div className="About container">
               <div className="row row--35">
                 <div className="Left-form col-lg-4 col-md-6 col-12">

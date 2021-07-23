@@ -15,8 +15,8 @@ export const actGetListUserAPI = () => {
         .catch();
     };
 };
-export const handleDeleteUser = id => {
-  return () => {
+export const handleDeleteUser = (id,cb) => {
+  return (dispatch) => {
     const token = localStorage.getItem('token');
     Axios({
       method: "DELETE",
@@ -26,6 +26,8 @@ export const handleDeleteUser = id => {
       }
     }).then((rs) => {
         Swal.fire("Xoá tài khoản thành công!", "Nhấn OK để thoát!", "success");
+        dispatch(actGetListUserAPI());
+        if (cb) cb(null, rs.data);
       })
       .catch((error) => {
         Swal.fire(
@@ -51,7 +53,7 @@ export const actGetDetailUserAPI = id => {
       });
   };
 };
-export const actUpdateUserAPI = (id,newUser) => {
+export const actUpdateUserAPI = (id,newUser,cb) => {
   const token = localStorage.getItem('token');
   return (dispatch) => {
     Axios({
@@ -67,10 +69,11 @@ export const actUpdateUserAPI = (id,newUser) => {
         Swal.fire({
           icon: 'success',
           title: 'Chỉnh sửa thành công!',
-          text: 'Đăng nhập ngay',
           width: '400px',
           padding: '0 0 20px 0'
-          })
+          });
+          if (cb) cb(null, rs.data);
+          dispatch(actGetListUserAPI());
       })
       .catch((err)=>{
         console.log(err);
@@ -96,8 +99,7 @@ export const actCreateWorkUserAPI = (createTypeWork,cb) =>{
               width: '400px',
               padding: '0 0 20px 0'
           }).then(() => {
-              console.log(rs.data);   
-              if (cb) cb(null, rs.data);
+            dispatch(actGetListWorkUserAPI(rs.data));
           });
       })
       .catch((err) => {
@@ -113,15 +115,16 @@ export const actCreateWorkUserAPI = (createTypeWork,cb) =>{
   }
 };
 export const actGetListWorkUserAPI = () => {
+  const token = localStorage.getItem('token');
   return (dispatch) => {
     Axios({
       method: "GET",
       url:
         "http://localhost:5000/api/work-user/get-Work-user",
+      data:token
     })
       .then((rs) => {
         dispatch(actGetListWorkUser(rs.data));
-        console.log(rs.data,"test")
       })
       .catch((err)=>{
         console.log(err,"err");

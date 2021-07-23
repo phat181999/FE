@@ -12,8 +12,7 @@ function Application(props) {
     const onShowDetail = (email) => {
         setTimeout(()=>{
             props.sendEmail({email});
-        },200)
-        
+        },200)  
     };
     // //lấy danh sách công việc trong user
     // let listApply=[];

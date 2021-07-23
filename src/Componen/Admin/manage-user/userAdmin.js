@@ -58,6 +58,7 @@ class CreateTypeWork extends Component{
       avatar: "",
       type:"",
       errors: {},
+      listUserWork:[]
     };
     const rules = [
       {
@@ -171,7 +172,9 @@ class CreateTypeWork extends Component{
   };
   componentDidMount() {
     this.props.getListUser();
-  }
+   // this.setState({listUserWork:this.props.listUser})
+  };
+ 
   renderHTML = () => {
     return this.props.listUser.map(renderUser => {
       return <User renderUser={renderUser} />;
@@ -367,12 +370,6 @@ class CreateTypeWork extends Component{
               </div>
               <div >
               <RadioGroup className="Register-form" name="sex" name="gender1" value={this.state.type} onChange={this.handleOnChane}>
-                  <FormControlLabel
-                    control={<Radio />}
-                    label="Nhà Tuyển Dụng"
-                    value="NHATUYENDUNG"
-                    name="type"   
-                  />
                   <FormControlLabel
                     control={<Radio />}
                     label="Ứng Viên"

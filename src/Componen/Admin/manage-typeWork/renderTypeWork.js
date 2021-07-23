@@ -68,6 +68,8 @@ function RenderTypeWork (props) {
             <>
             <TableRow >
                 <TableCell >{rendertypeWork.titleWork}</TableCell>
+                <TableCell >{rendertypeWork.addressWork}</TableCell>
+                <TableCell >{rendertypeWork.levelWork}</TableCell>
                 <TableCell >
                     <Button variant="contained" color="primary" onClick={()=>handleClick(rendertypeWork.id)}>Xóa</Button>
                     <Button variant="contained" color="primary"onClick={()=>handleClickUpdate(rendertypeWork.id)}>Sửa</Button>

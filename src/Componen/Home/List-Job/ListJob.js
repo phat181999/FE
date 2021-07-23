@@ -9,7 +9,7 @@ import { connect } from "react-redux";
 import DetailWork from "./detail-work/detailWork"
 import Header from './header';
 import { useLocation } from 'react-router-dom';
-
+import Footer from '../Footer/footer';
 const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
@@ -34,7 +34,6 @@ const divPage = {
   marginTop: "40px",
 };
  function ListJob(props) {
-
   const classes = useStyles();
   const {listWork} = props;
   const location = useLocation();
@@ -44,7 +43,6 @@ const divPage = {
 
   const loadListWork = () => {
     const search = location?.state?.search || "";
-    console.log("phat", location, search);
     props.getListWork(encodeURIComponent(search));
   };
 
@@ -61,6 +59,7 @@ const divPage = {
     setWorkID(id);
   };
   return (
+    <>
     <div className="container List-Job" style={divPage}>
       <Header/>
       <Grid container>
@@ -84,6 +83,8 @@ const divPage = {
         </Grid>
       </Grid>
     </div>
+    <Footer/>
+    </>
   );
 }
 

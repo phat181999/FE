@@ -41,17 +41,20 @@ const useStyles = makeStyles((theme) => ({
 const divStyleImageIcon = {
     height: '40px',
     width: '42px'
-}
+};
 const BackGround = {
       height: '100%',
       width: '100%'
-}
+};
 const divHight = {
     height: '256px'
-}
+};
 const DivButton = {
-  width: '160px'
-}
+  width: '160px',
+};
+const LinkDiv = {
+  textDecoration:'none'
+};
  function RenderApplication(props) {
     const classes = useStyles();
     const {renderAplication,nameWork,onShowDetail} = props;
@@ -80,24 +83,26 @@ const DivButton = {
             </CardContent>
             <CardContent>
                 <div className="Application-Card-content" >
-                    <h4>Họ và Tên: {renderAplication?.name}</h4>
-                    <h5>Công việc ứng tuyển: {nameWork}</h5>
+                  <div>
+                    <span>Họ và Tên: {renderAplication?.name}</span>
+                 </div>
+                 <div>
+                    <span>Công việc ứng tuyển: {nameWork}</span>
+                 </div>
+                
                     <span><PhoneInTalkIcon/>{renderAplication?.phone}</span>
                 </div>
             </CardContent>
             <CardContent>
                 <div className="Application-Card-content" >
                 <Link  
-                  to={{pathname: "/detail-user", state: {id: renderAplication?.id || null}}}
-                  // style={divtext}
-                >
-                  <Button variant="contained" color="secondary" style={DivButton}>
-                    Xem CV
+                  // to={{pathname: "/detail-user", state: {id: renderAplication?.id || null}}}
+                  style={LinkDiv}
+                >                  
+                  <Button variant="contained" color="secondary" style={DivButton} onClick={() => {console.log(renderAplication?.id)}}>
+                    Xem Hồ Sơ
                   </Button>
                 </Link>
-                <Button variant="contained" color="secondary" style={DivButton} onClick={() => {onShowDetail(renderAplication?.email)}}>
-                    Gửi Email
-                  </Button>
                 </div>
             </CardContent>
         </Card>

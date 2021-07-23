@@ -7,7 +7,8 @@ let initialState = {
     getlistworkcompany: [],
     getWorkContent: [],
     getListUserPostWork:[],
-    detailUpdateWork:{}
+    detailUpdateWork:{},
+    detailWorkFromCompany:{}
 };
 
 const workReducer = (state=initialState,action)=>{
@@ -32,6 +33,9 @@ const workReducer = (state=initialState,action)=>{
             return{...state};
         case actType.DETAIL_UPDATE_WORK:
             state.detailUpdateWork = action.data;
+            return{...state};
+        case actType.DETAIL_FROM_COMPANY:
+            state.detailWorkFromCompany = action.data;
             return{...state};
         default:
             return {...state};

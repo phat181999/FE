@@ -4,6 +4,7 @@ import Grid from "@material-ui/core/Grid";
 import RenderUserPost from './renderUserPost';
 import * as Action from  "../../../ShareAll/Action/work";
 import { connect } from "react-redux";
+import Footer from '../Footer/footer';
 const useStyles = makeStyles((theme) => ({
     paper: {
       padding: theme.spacing(1),
@@ -43,6 +44,7 @@ function UserPostWork (props)  {
         });
       };
     return (
+        <>
         <div className={classes.root} className="container">
             <div className="text-center">
                 <h2>THÔNG TIN ỨNG VIÊN</h2>
@@ -51,7 +53,8 @@ function UserPostWork (props)  {
                 {renderHTML()}
             </Grid>
         </div>
-        
+        <Footer/>
+        </>
     );
 }
 const mapStateToProp = state => {

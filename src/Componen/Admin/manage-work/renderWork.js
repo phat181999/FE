@@ -8,7 +8,7 @@ import EditWork from './editWork';
 function RenderWork (props) {
     const [modal,setModal]=useState(false);
     const handleClick=(id)=>{
-        const {deleteWork} = this.props;
+        const {deleteWork} = props;
         deleteWork(id);
     };
     const offModal=()=>{

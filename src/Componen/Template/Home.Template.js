@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react';
 import { Route } from 'react-router-dom';
 import Navbar from '../Home/navbar';
+import Footer from '../Home/Footer/footer'
 
 const HomeLayOut = (props) => {
 	return (

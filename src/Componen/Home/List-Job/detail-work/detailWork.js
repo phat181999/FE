@@ -2,14 +2,15 @@ import React, { Component } from 'react'
 import { connect } from "react-redux";
 import * as Action from  "../../../../ShareAll/Action/work";
 import RenderDetailWork from './renderDetailWork';
-import * as work from "../../../../ShareAll/Action/application"
+import * as work from "../../../../ShareAll/Action/application";
+import * as sendEmail from "../../../../ShareAll/Action/email";
 class DetailWork extends Component {
   componentDidMount() {
     const {WorkID} = this.props;
     if (!WorkID) return false;
     this.props.getDetailWork(WorkID);
   }
-  onShowDetail = (id) => {
+  onShowDetail = (id,email) => {
     this.props.applyWork({jobId:id});
   };
   renderTable = () => {
@@ -54,7 +55,10 @@ const mapDispatchToProps = dispatch => {
     },
     applyWork: (idJob) => {
       dispatch(work.actPostApplicationAPI(idJob));
-    }
+    },
+    sendEmail: (email) =>{
+      dispatch(sendEmail.actPostEmailAPI(email));
+  }
   };
 };
 

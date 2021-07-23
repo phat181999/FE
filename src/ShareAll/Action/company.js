@@ -9,7 +9,7 @@ export const actCreateCompanyAdminAPI = createCopany =>{
     Object.keys(createCopany).forEach(key => {
         formData.append(key, createCopany[key]);
     });
-    return  dispatch =>{
+    return  (dispatch) =>{
         Axios({
             method: 'POST',
             url:'http://localhost:5000/api/company/createCompany',
@@ -27,6 +27,7 @@ export const actCreateCompanyAdminAPI = createCopany =>{
                 width: '400px',
                 padding: '0 0 20px 0'
             }).then(() => {
+              dispatch(actGetListCompanyAPI());
                 console.log(rs.data);   
             });
         })
@@ -43,7 +44,7 @@ export const actCreateCompanyAdminAPI = createCopany =>{
     }
 };
 export const handleDeleteCompany = id => {
-  return () => {
+  return (dispatch) => {
     const token = localStorage.getItem('token');
     Axios({
       method: "DELETE",
@@ -54,6 +55,7 @@ export const handleDeleteCompany = id => {
     })
       .then((rs) => {
         Swal.fire("Xoá thành công!", "Nhấn OK để thoát!", "success");
+        dispatch(actGetListCompanyAPI());
       })
       .catch((error) => {
         Swal.fire(
@@ -65,7 +67,7 @@ export const handleDeleteCompany = id => {
     }
 };
 export const handleUpdateCompany = (id,newCom) => {
-  return () => {
+  return (dispatch) => {
     const token = localStorage.getItem('token');
     Axios({
       method: "PUT",
@@ -77,6 +79,7 @@ export const handleUpdateCompany = (id,newCom) => {
     })
       .then((rs) => {
         Swal.fire("Thành công!", "Nhấn OK để thoát!", "success");
+        dispatch(actGetListCompanyAPI());
       })
       .catch((error) => {
         Swal.fire(
@@ -159,12 +162,6 @@ export const actGetInfoCompanyAPI = () => {
       });
   };
 };
-export const actGetListCompany = (getListCompany) => {
-  return {
-    type: actType.GET_LIST_COMPANY,
-    data: getListCompany,
-  };
-};
 export const actGetDetailCompanyAPI = id => {
   return (dispatch) => {
     Axios({
@@ -178,6 +175,34 @@ export const actGetDetailCompanyAPI = id => {
       .catch((err)=>{
         console.log(err);
       });
+  };
+};
+export const actGetDetailCompanyAccountAPI = () => {
+  return (dispatch) => {
+    Axios({
+      method: "GET",
+      url:
+        `http://localhost:5000/api/company/get-detail-account-company`,
+    })
+      .then((rs) => {
+        dispatch(actGetDetailCompanyAccount(rs.data));
+        console.log("test",rs.data);
+      })
+      .catch((err)=>{
+        console.log(err);
+      });
+  };
+};
+export const actGetDetailCompanyAccount = (detailAccountCompany) => {
+  return {
+    type: actType.DETAIL_ACCOUNT_COMPANY,
+    data: detailAccountCompany,
+  };
+};
+export const actGetListCompany = (getListCompany) => {
+  return {
+    type: actType.GET_LIST_COMPANY,
+    data: getListCompany,
   };
 };
 export const actGetDetailCompany = (getdetailCompany) => {

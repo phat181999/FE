@@ -58,8 +58,7 @@ function InformationUser(props) {
   const renderHTML = () => {
       const {getInfoCvUser} =  props;
       return <RenderInforUser renderInfoUserCV = {getInfoCvUser}/>
-  }
-  console.log(props.getInfoCvUser)
+  };
   return (
     <div className=" information-user">
       <div className={classes.root} className="About-infor">

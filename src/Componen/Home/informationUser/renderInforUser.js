@@ -79,6 +79,9 @@ root: {
                             <div>
                                 <p>{renderInfoUserCV?.skill || ""}</p>
                             </div>
+                            <div>
+                                <p>{renderInfoUserCV?.email || ""}</p>
+                            </div>
                         </div>
                         <div className="Info-right-item col-lg-7 mt_md--40 mt_sm--40">
                             <div className="Info-right-item-Img">
@@ -102,9 +105,9 @@ root: {
                             <div className='About-right-div'> 
                                 <span>Số điện thoại: {renderInfoUserCV?.phone}</span>
                             </div>
-                            <div className='About-right-div'>
-                                <span>Địa chỉ: {renderInfoUserCV?.address}</span>
-                            </div>
+                            {/* <div className='About-right-div'>
+                                <span>Địa chỉ: {renderInfoUserCV?.nation}</span>
+                            </div> */}
                             <div className='About-right-div'>
                                 <span>Ngày sinh: {renderInfoUserCV?.birthday}</span>
                             </div>

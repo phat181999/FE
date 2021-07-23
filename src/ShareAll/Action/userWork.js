@@ -2,6 +2,25 @@ import Axios from "axios";
 import Swal from 'sweetalert2';
 import * as actType from "../Constans/actType";
 
+
+export const actGetListWorkUserAPI = () => {
+  const token = localStorage.getItem('token');
+  return (dispatch) => {
+    Axios({
+      method: "GET",
+      url:
+        "http://localhost:5000/api/work-user/get-Work-user",
+      data:token
+    })
+      .then((rs) => {
+        dispatch(actGetListWorkUser(rs.data));
+        console.log(rs.data,"test1")
+      })
+      .catch((err)=>{
+        console.log(err,"err");
+      });
+  };
+};
 export const actGetUserWorkAdminAPI = () => {
     return (dispatch) => {
       Axios({
@@ -17,7 +36,7 @@ export const actGetUserWorkAdminAPI = () => {
     };
 };
 export const handleDeleteUserWorkAdminAPI = id => {
-  return () => {
+  return (dispatch) => {
     const token = localStorage.getItem('token');
     Axios({
       method: "DELETE",
@@ -28,6 +47,7 @@ export const handleDeleteUserWorkAdminAPI = id => {
     })
       .then((rs) => {
         Swal.fire("Xoá thành công!", "Nhấn OK để thoát!", "success");
+        dispatch(actGetListWorkUserAPI());
       })
       .catch((error) => {
         Swal.fire(
@@ -53,7 +73,7 @@ export const actGetDetailUserWorkAdminAPI = (id) => {
   };
 };
 export const acthandleUpdateUserWorkAdminAPI = (id,updateUserWork) => {
-  return () => {
+  return (dispatch) => {
     const token = localStorage.getItem('token');
     Axios({
       method: "PUT",
@@ -65,7 +85,7 @@ export const acthandleUpdateUserWorkAdminAPI = (id,updateUserWork) => {
     })
       .then((rs) => {
         Swal.fire("Thành công!", "Nhấn OK để thoát!", "success");
-        console.log(rs.data);
+        dispatch(actGetListWorkUserAPI());
       })
       .catch((error) => {
         Swal.fire(
@@ -86,5 +106,11 @@ const actGetDetailUserWorkAdmin = (detailUserWorkAdmin) => {
   return {
       type: actType.DETAIL_USER_WORK_ADMIN,
       data: detailUserWorkAdmin,
+  };
+};
+const actGetListWorkUser = (listWorkUserPost) => {
+  return {
+      type: actType.CREATE_WORK_USER,
+      data: listWorkUserPost,
   };
 };

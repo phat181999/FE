@@ -4,7 +4,7 @@ let initialState = {
     listUser: [],
     getdetailuser:{},
     userEdit: null,
-    listWorkUserPost:{},
+    listWorkUserPost:[{}],
     listAplliedUser:[]
 }
 

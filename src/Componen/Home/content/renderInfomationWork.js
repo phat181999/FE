@@ -43,21 +43,21 @@ const useStyles = makeStyles((theme) => ({
 const divStyleImageIcon = {
   height: '40px',
   width: '42px'
-}
+};
 const divHight = {
   height: '256px'
-}
+};
 const BackGround = {
   height: '100%',
     width: '100%'
-}
+};
 const divStyleCard = {
   margin: '29px 29px',
   boxShadow: '0 4px 20px black'
-}
+};
 const DivButton = {
   width: '312px'
-}
+};
  function RenderInfomationWork(props) {
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
@@ -66,7 +66,7 @@ const DivButton = {
   };
   const handleApply=(id)=>{
     applyWork(id);
-  }
+  };
   const history=useHistory();
   const checklogin=()=>{
     if(localStorage.getItem("user")){
@@ -74,9 +74,8 @@ const DivButton = {
     }else{
       history.push("/login");
     }
-  }
+  };
   let {renderInfomation,applyWork,onShowDetail} = props;
-  // onClick={()=>handleApply(renderInfomation?.id)}
   return (
   <Card className={classes.root} style={divStyleCard}>
       <CardHeader

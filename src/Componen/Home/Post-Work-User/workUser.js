@@ -18,6 +18,7 @@ class WorkUser extends Component {
             experience: "",
             education: "",
             errors: {},
+          
         };
         const rules = [
             {
@@ -62,7 +63,7 @@ class WorkUser extends Component {
            
           ];
           this.validator = new Validator(rules);
-    }
+    };
     handleOnChane = (event) => {
         const { name, value } = event.target;
         this.setState({
@@ -74,16 +75,16 @@ class WorkUser extends Component {
         this.props.createWorkUser(this.state);
     };
     componentDidMount() {
-        this.props.getDetailUserWorkPost();
-    }
+        this.props.getDetailUserWorkPost({});
+    };
     handleSubmitError = (e) => {
         this.setState({
           errors: this.validator.validate(this.state),
         });
         console.log(this.state);
     };
-    renderHTML = () => {
-        return <Render createWork={this.props.detailinfouserwork} />;
+    renderHTML = () => {    
+       return    <Render createWork={this.props.listWorkUserPost} />; 
     };
     render() {
         const {errors} = this.state;
@@ -137,7 +138,11 @@ class WorkUser extends Component {
                 </Paper>
               </Grid>
               <Grid item xs={12} style={loadCreateWork}>
-                {this.renderHTML()}
+                <div className="container">
+                    <div className="row">
+                    {this.renderHTML()}
+                    </div>
+                </div>            
               </Grid>
             </Grid>
             </div>

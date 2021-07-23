@@ -99,6 +99,7 @@ export const actCreateWorkEmployer = (typeWork)=>{
               width: '400px',
               padding: '0 0 20px 0'
           }).then(() => {
+            
               console.log(rs.data);   
           });
       })
@@ -143,7 +144,7 @@ export const actGetListWorkContentAPI = () => {
   };
 };
 export const handleUpdateWork = (id,updateWork) => {
-  return () => {
+  return (dispatch) => {
     const token = localStorage.getItem('token');
     Axios({
       method: "PUT",
@@ -155,6 +156,7 @@ export const handleUpdateWork = (id,updateWork) => {
     })
       .then((rs) => {
         Swal.fire("Thành công!", "Nhấn OK để thoát!", "success");
+        dispatch(actGetListWorkCompanyAPI(rs.data));
       })
       .catch((error) => {
         Swal.fire(
@@ -166,7 +168,7 @@ export const handleUpdateWork = (id,updateWork) => {
     }
 };
 export const handleDeleteWork = id => {
-  return () => {
+  return (dispatch) => {
     const token = localStorage.getItem('token');
     Axios({
       method: "DELETE",
@@ -177,6 +179,7 @@ export const handleDeleteWork = id => {
     })
       .then((rs) => {
         Swal.fire("Xoá thành công!", "Nhấn OK để thoát!", "success");
+        dispatch(actGetListWorkCompanyAPI(rs.data));
       })
       .catch((error) => {
         Swal.fire(
@@ -214,6 +217,31 @@ export const actDetailUpdateWorkAPI = id => {
       .catch((err) => {
         console.log(err);
       });
+  };
+};
+export const actDetailInfoUserWorkFromCompanyAPI = () => {
+  const token = localStorage.getItem('token');
+  return (dispatch) => {
+    Axios({
+      method: "GET",
+      url: `http://localhost:5000/api/work/get-detail-work-account`,
+      headers: {
+        token: token
+      }
+    })
+      .then((rs) => {
+        dispatch(actDetailInfoUserWorkFromCompany(rs.data));
+        console.log(rs.data,"log")
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+};
+export const actDetailInfoUserWorkFromCompany = (detailWorkFromCompany) => {
+  return {
+    type: actType.DETAIL_FROM_COMPANY,
+    data: detailWorkFromCompany,
   };
 };
 export const actDetailUpdateWork = (detailUpdateWork) => {
